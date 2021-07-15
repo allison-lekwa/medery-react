@@ -1,25 +1,51 @@
-import logo from './logo.svg';
+
+import { Switch, Route} from 'react-router-dom';
+import React, { useState } from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Header from './components/header/header.component';
+import Navbar from './components/header/Navbar';
+import HomePage from './pages/homepage/homepage.component';
+import AboutPage from './pages/aboutpage/aboutpage.component';
+
+
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isDesktop: false //This is where I am having problems
+    };
+
+    this.updatePredicate = this.updatePredicate.bind(this);
+  }
+  componentDidMount() {
+    this.updatePredicate();
+    window.addEventListener("resize", this.updatePredicate);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.updatePredicate);
+  }
+
+  updatePredicate() {
+    this.setState({ isDesktop: window.innerWidth >= 760 });
+  }
+
+  render (){
+    const isDesktop = this.state.isDesktop;
+    return (
+      <div>      
+        {isDesktop ? (<Header/>) : (<Navbar />) }
+        <Switch>
+          <Route exact path='/' component={HomePage}/>
+          <Route path='/shop' component={AboutPage}/>
+        </Switch>
+       
+      </div>
+    );
+  }
+  
 }
 
 export default App;
