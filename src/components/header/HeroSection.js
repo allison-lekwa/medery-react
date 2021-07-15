@@ -6,7 +6,7 @@ import './HeroSection.css';
 
 const HeroSection = ({lightBg, topLine, lightText,
                       lightTextDesc, headline, description,
-                      buttonLabel, img, alt, imgStart}) => {
+                      buttonLabel, img, alt, imgStart, number}) => {
                         return(
                             <>
                               <div className = {
@@ -18,25 +18,51 @@ const HeroSection = ({lightBg, topLine, lightText,
                                         'row-reverse' : 'row'
                                       }}
                                     >
-                                      <div className="col">
-                                        <div className="home__hero-text-wrapper">
-                                          <div className="top-line">{topLine}</div>
-                                          <h1 className={lightText ? 'heading' : 'heading dark'}>
-                                            {headline}
-                                          </h1>
-                                          <p className={lightTextDesc ? 'home__hero-subtitle' : 'home__hero-subtitle dark'}>
-                                            {description}
-                                          </p>
-                                          <Link to='/sign-up'>
-                                            <Button buttonSize='btn--wide' buttonColor='blue'>{buttonLabel}</Button>
-                                          </Link>
-                                        </div>
-                                      </div>
-                                      <div className="col">
-                                        <div className="home__hero-img-wrapper">
-                                          <img src={img} alt={alt} className='home_hero-img' />
-                                        </div>
-                                      </div>
+                                      { number%2 === 0 ?
+                                        <>
+                                          <div className="col">
+                                            <div className="home__hero-text-wrapper">
+                                              <div className="top-line">{topLine}</div>
+                                              <h1 className={lightText ? 'heading' : 'heading dark'}>
+                                                {headline}
+                                              </h1>
+                                              <p className={lightTextDesc ? 'home__hero-subtitle' : 'home__hero-subtitle dark'}>
+                                                {description}
+                                              </p>
+                                              <Link to='/sign-up'>
+                                                <Button buttonSize='btn--wide' buttonColor='blue'>{buttonLabel}</Button>
+                                              </Link>
+                                            </div>
+                                          </div>
+                                          <div className="col">
+                                            <div className="home__hero-img-wrapper">
+                                              <img src={img} alt={alt} className='home_hero-img' />
+                                            </div>
+                                          </div>
+                                        </>
+                                        :
+                                        <>
+                                          <div className="col">
+                                            <div className="home__hero-img-wrapper">
+                                              <img src={img} alt={alt} className='home_hero-img' />
+                                            </div>
+                                          </div>
+                                          <div className="col">
+                                            <div className="home__hero-text-wrapper">
+                                              <div className="top-line">{topLine}</div>
+                                              <h1 className={lightText ? 'heading' : 'heading dark'}>
+                                                {headline}
+                                              </h1>
+                                              <p className={lightTextDesc ? 'home__hero-subtitle' : 'home__hero-subtitle dark'}>
+                                                {description}
+                                              </p>
+                                              <Link to='/sign-up'>
+                                                <Button buttonSize='btn--wide' buttonColor='blue'>{buttonLabel}</Button>
+                                              </Link>
+                                            </div>
+                                          </div>                                          
+                                        </>
+                                      }
 
                                     </div>
                                   </div>
@@ -46,3 +72,4 @@ const HeroSection = ({lightBg, topLine, lightText,
                             
                         );
                       }
+export default HeroSection; 

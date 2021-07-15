@@ -6,6 +6,7 @@ import './App.css';
 import Header from './components/header/header.component';
 import Navbar from './components/header/Navbar';
 import HomePage from './pages/homepage/homepage.component';
+import Home from './pages/homepage/Home';
 import AboutPage from './pages/aboutpage/aboutpage.component';
 
 
@@ -38,7 +39,8 @@ class App extends React.Component {
       <div>      
         {isDesktop ? (<Header/>) : (<Navbar />) }
         <Switch>
-          <Route exact path='/' component={HomePage}/>
+          <Route exact path='/' component={Home}/>
+          <Route exact path='/home' component={HomePage}/>
           <Route path='/shop' component={AboutPage}/>
         </Switch>
        
